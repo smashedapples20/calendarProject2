@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calendar Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ext/fullCalendar/fullcalendar.css" />
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="ext/fullCalendar/lib/moment.min.js"></script>
+    <script src="ext/fullCalendar/fullcalendar.min.js"></script>
+    <script src="calendarApp.js"></script>
+    <script>
+        $(document).ready(function() {
+            app.init();
+        });
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+
+</html>
