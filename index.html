@@ -13,6 +13,7 @@
     <script src="appointmentPanel.js"></script>
     <script>
         $(document).ready(function() {
+            var app = new window.app.mainViewModel(new window.app.panel());
             app.init();
         });
     </script>
