@@ -10,6 +10,7 @@
     <script src="ext/fullCalendar/lib/moment.min.js"></script>
     <script src="ext/fullCalendar/fullcalendar.min.js"></script>
     <script src="calendarApp.js"></script>
+    <script src="appointmentPanel.js"></script>
     <script>
         $(document).ready(function() {
             app.init();
@@ -32,9 +33,21 @@
     </style>
   </head>
   <body>
+    <div class='overlay'>
+    </div>
     <div class='container'>
         <div id='calendar'></div>
         <div id='agenda'></div>
+    </div>
+    <div class="appointmentPanel">
+        <div class="panelContent">
+            <label>Appointment name: </label>
+            <input type="text">
+        </div>
+        <div class="panelButtons">
+            <button id="save">Save</button>
+            <button id="cancel">Cancel</button>
+        </div>
     </div>
   </body>
 

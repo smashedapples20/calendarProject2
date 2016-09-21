@@ -13,14 +13,14 @@
     }
 
     var createAppointment = function (start, end) {
-        events.push({
+        var event = {
             id: id++,
-            title: 'a new event',
+            title: 'Event name',
             start: start,
             end: end
-        });
+        };
 
-        updateCalendarViews();
+        updateAndShowPanel(event);
     }
 
     var updateAppointment = function(event) {
@@ -40,6 +40,32 @@
         $('#agenda').fullCalendar('refetchEvents');
     }
 
+    var updateAndShowPanel = function(event) {
+        $('.appointmentPanel').addClass('appointmentPanel-shown');
+        $('.overlay').addClass('overlay-shown');
+
+        registerPanelEventHandlers();
+    }
+
+    var dismissPanel = function() {
+        $('.appointmentPanel').removeClass('appointmentPanel-shown');
+        $('.overlay').removeClass('overlay-shown');
+
+        unregisterPanelEventHandlers();
+    }
+
+    var registerPanelEventHandlers = function() {
+        $('.overlay').click(dismissPanel);
+        $('#cancel').click(dismissPanel);
+        $('#save').click(saveAppointment);
+    }
+
+    var unregisterPanelEventHandlers = function() {
+        $('overlay').unbind();
+        $('#cancel').unbind();
+        $('#save').unbind();
+    }
+
     app.init = function() {
         $('#calendar').fullCalendar({
             defaultDate: '2016-09-21',
@@ -57,6 +83,7 @@
             },
             eventLimit: true
         });
+
         $('#agenda').fullCalendar({
             defaultDate: '2016-09-21',
             events: function(start, end, timezone, callback) {
