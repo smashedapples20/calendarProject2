@@ -1,6 +1,7 @@
 (function(app) {
     var events = [
         {
+            id: 1,
             title: 'Repeating Event',
             start: '2016-09-16T16:00:00'
         }];
@@ -19,7 +20,7 @@
         //     $('#calendar').fullCalendar('refetchEvents');
         // }
         // $('#calendar').fullCalendar('unselect');
-        $('#agenda').fullCalendar('goToDate', start);
+        $('#agenda').fullCalendar('gotoDate', start);
     }
 
     app.init = function() {
@@ -46,7 +47,11 @@
             select: function(start, end) {
                 changeTime(start, end);
             },
-            editable: false,
+            editable: true,
+            eventDrop: function(event, delta, revertFunc) {
+                $('#calendar').fullCalendar('updateEvent', event);
+                $('#calendar').fullCalendar('refetchEvents');
+            },
             defaultView: 'agendaDay'
         })
     }
