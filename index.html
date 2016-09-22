@@ -45,13 +45,14 @@
     </style>
   </head>
   <body>
-    <div class='overlay'>
+    <div class='overlay fullScreen'>
     </div>
-    <div class='container'>
+    <div class='container fullScreen'>
         <div id='calendar'></div>
         <div id='agenda'></div>
     </div>
     <div class="appointmentPanel">
+        <span><h1>Edit appointment</h1></span>
         <div class="panelContent">
             <span>
                 <label for="appointmentName">Name:</label>
@@ -67,7 +68,7 @@
             </span>
             <span>
                 <label for="description">Description:</label>
-                <input type="text" id="description">
+                <textarea id="description" rows="4"></textarea>
             </span>
         </div>
         <div class="panelButtons">

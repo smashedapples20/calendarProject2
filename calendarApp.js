@@ -1,9 +1,15 @@
 (function(app) {
     app.mainViewModel = (function() {
+        var selectors = app.selectors;
         var id = 0;
 
-        var changeDate = function(start, end) {
-            $('#agenda').fullCalendar('gotoDate', start);
+        var changeDate = function(date) {
+            $('#agenda').fullCalendar('gotoDate', date);
+        }
+
+        var updateCalendarSelectedDate = function(moment) {
+            $(selectors.calendar).fullCalendar('unselect');
+            $(selectors.calendar).fullCalendar('select', moment);
         }
 
         var createAppointment = function (start, end) {
@@ -71,13 +77,14 @@
 
             $('#calendar').fullCalendar({
                 defaultDate: '2016-09-21',
+                contentHeight: 'auto',
+                height: 'auto',
                 events: function(start, end, timezone, callback) {
                     callback(events);    
                 },
-                selectable: true,
-                selectHelper: false,
-                select: function(start, end) {
-                    changeDate(start, end);
+                selectable: false,
+                dayClick: function(date, jsEvent, view) {
+                    changeDate(date);
                 },
                 editable: true,
                 eventClick: function(calEvent, jsEvent, view) {
@@ -91,15 +98,11 @@
 
             $('#agenda').fullCalendar({
                 defaultDate: '2016-09-21',
+                defaultView: 'agendaDay',
+                editable: true,
                 events: function(start, end, timezone, callback) {
                     callback(events);
                 },
-                selectable: true,
-                selectHelper: false,
-                select: function(start, end) {
-                    createAppointment(start, end);
-                },
-                editable: true,
                 eventClick: function(calEvent, jsEvent, view) {
                     editAppointment(calEvent);
                 },
@@ -109,7 +112,15 @@
                 eventResize: function(event, delta, revertFunc) {
                     updateAppointment(event);
                 },
-                defaultView: 'agendaDay'
+                height: 'parent',
+                select: function(start, end) {
+                    createAppointment(start, end);
+                },
+                selectable: true,
+                selectHelper: true,
+                viewRender: function(view, element) {
+                    updateCalendarSelectedDate(view.start);
+                }
             });
         }
 
