@@ -29,7 +29,10 @@
 
             $('.appointmentPanel').on("saveEvent", function(_event, calEvent) {
                 _event.stopPropagation();
-                eventToEdit = calEvent;
+
+                eventToEdit.title = event.title;
+                eventToEdit.description = event.description;
+
                 updateCalendarViews();
                 $('.appointmentPanel').off();
             });
