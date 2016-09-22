@@ -1,6 +1,6 @@
 (function(app) {
     app.panel = (function() {
-        var event = {};
+        var event;
 
         function panel() {
         }
@@ -17,6 +17,12 @@
             $('#save').unbind();
         }
 
+        var saveAppointment = function() {
+            $('.appointmentPanel').trigger("saveEvent", event);
+            event = null;
+            dismiss();
+        }
+
         var dismiss = function() {
             $('.appointmentPanel').removeClass('appointmentPanel-shown');
             $('.overlay').removeClass('overlay-shown');
@@ -24,8 +30,8 @@
             unregisterPanelEventHandlers();
         }
 
-        panel.prototype.show = function(event) {
-            this.event = event;
+        panel.prototype.show = function(_event) {
+            event = _event;
 
             $('.appointmentPanel').addClass('appointmentPanel-shown');
             $('.overlay').addClass('overlay-shown');

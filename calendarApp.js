@@ -1,15 +1,6 @@
 (function(app) {
     app.mainViewModel = (function() {
-        var panel = {};
-        var id = 2;
-
-        var events = [
-            {
-                id: 1,
-                title: 'Repeating Event',
-                start: '2016-09-16T16:00:00'
-            }
-        ];
+        var id = 0;
 
         var changeDate = function(start, end) {
             $('#agenda').fullCalendar('gotoDate', start);
@@ -23,7 +14,14 @@
                 end: end
             };
 
-            this.panel.show(event);
+            $('.appointmentPanel').on("saveEvent", function(_event, calEvent) {
+                _event.stopPropagation();
+                events.push(calEvent);
+                updateCalendarViews();
+                $('.appointmentPanel').off();
+            });
+
+            panel.show(event);
         }
 
         var updateAppointment = function(event) {
@@ -43,11 +41,14 @@
             $('#agenda').fullCalendar('refetchEvents');
         }
 
-        function mainViewModel(_panel) {
+        function mainViewModel(_events, _panel) {
             panel = _panel;
+            events = _events;
         }
 
         mainViewModel.prototype.init = function() { 
+            id = events[events.length - 1].id++;
+
             $('#calendar').fullCalendar({
                 defaultDate: '2016-09-21',
                 events: function(start, end, timezone, callback) {
