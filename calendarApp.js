@@ -24,10 +24,27 @@
             panel.show(event);
         }
 
-        var updateAppointment = function(event) {
-            var eventToUpdate = events.find(function(value) {
+        var editAppointment = function (event) {
+            var eventToEdit = getEventForEdit(event);
+
+            $('.appointmentPanel').on("saveEvent", function(_event, calEvent) {
+                _event.stopPropagation();
+                eventToEdit = calEvent;
+                updateCalendarViews();
+                $('.appointmentPanel').off();
+            });
+
+            panel.show(event);
+        }
+
+        var getEventForEdit = function (event) {
+            return events.find(function(value) {
                 return value.id === event.id;
             });
+        }
+
+        var updateAppointment = function(event) {
+            var eventToUpdate = getEventForEdit(event);
 
             eventToUpdate.title = event.title;
             eventToUpdate.start = event.start;
@@ -47,7 +64,7 @@
         }
 
         mainViewModel.prototype.init = function() { 
-            id = events[events.length - 1].id++;
+            id = events[events.length - 1].id + 1;
 
             $('#calendar').fullCalendar({
                 defaultDate: '2016-09-21',
@@ -60,6 +77,9 @@
                     changeDate(start, end);
                 },
                 editable: true,
+                eventClick: function(calEvent, jsEvent, view) {
+                    editAppointment(calEvent);
+                },
                 eventDrop: function(event, delta, revertFunc) {
                     updateAppointment(event);
                 },
@@ -77,7 +97,13 @@
                     createAppointment(start, end);
                 },
                 editable: true,
+                eventClick: function(calEvent, jsEvent, view) {
+                    editAppointment(calEvent);
+                },
                 eventDrop: function(event, delta, revertFunc) {
+                    updateAppointment(event);
+                },
+                eventResize: function(event, delta, revertFunc) {
                     updateAppointment(event);
                 },
                 defaultView: 'agendaDay'

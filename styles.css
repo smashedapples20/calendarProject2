@@ -3,6 +3,10 @@
     z-index: 10;
 }
 
+.panelContent {
+    display: flex;
+}
+
 .appointmentPanel {
     position: absolute;
     top: 0;

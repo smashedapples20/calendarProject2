@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="ext/fullCalendar/lib/moment.min.js"></script>
     <script src="ext/fullCalendar/fullcalendar.min.js"></script>
+    <script src="selectors.js"></script>
     <script src="calendarApp.js"></script>
     <script src="appointmentPanel.js"></script>
     <script>
@@ -16,8 +17,9 @@
             var events = [
                 {
                     id: 1,
-                    title: 'Repeating Event',
-                    start: '2016-09-16T16:00:00'
+                    title: 'Starter Event',
+                    start: '2016-09-16T16:00:00',
+                    end: '2016-09-16T17:00:00'
                 }
             ];
 
@@ -51,8 +53,22 @@
     </div>
     <div class="appointmentPanel">
         <div class="panelContent">
-            <label>Appointment name: </label>
-            <input type="text">
+            <span>
+                <label for="appointmentName">Name:</label>
+                <input type="text" id="appointmentName">
+            </span>
+            <span>
+                <label for="startTime">Start time:</label>
+                <input type="text" id="startTime" disabled="true">
+            </span>
+            <span>
+                <label for="endTime">End time:</label>
+                <input type="text" id="endTime" disabled="true">
+            </span>
+            <span>
+                <label for="description">Description:</label>
+                <input type="text" id="description">
+            </span>
         </div>
         <div class="panelButtons">
             <button id="save">Save</button>
