@@ -1,5 +1,16 @@
+// ************************** //
+// Copyright Steven Mott 2016 //
+// ************************** //
+
 (function(app) {
     app.selectors = (function () {
+
+        /**
+         * Creates an instance of selectors
+         * 
+         * @constructor
+         * @this {selectors}
+         */
         function selectors() {
         }
 

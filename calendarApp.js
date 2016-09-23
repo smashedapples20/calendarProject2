@@ -1,7 +1,78 @@
+// ************************** //
+// Copyright Steven Mott 2016 //
+// ************************** //
+
 (function(app) {
-    app.mainViewModel = (function() {
+    app.calendarController = (function() {
         var selectors = app.selectors;
         var id = 0;
+
+        /**
+         * Creates and instance of calendarController
+         * 
+         * @constructor
+         * @param {event[]} _events The events to initialize the calendars with.
+         * @param {appointmentPanel} _panel The appointmentPanel to use with these calendars.
+         */
+        function calendarController(_events, _panel) {
+            panel = _panel;
+            events = _events;
+        }
+        
+        /**
+         * Initializes the calendarController.
+         */
+        calendarController.prototype.init = function() { 
+            id = events[events.length - 1].id + 1;
+
+            $(selectors.calendar).fullCalendar({
+                defaultDate: '2016-09-21',
+                contentHeight: 'auto',
+                height: 'auto',
+                events: function(start, end, timezone, callback) {
+                    callback(events);    
+                },
+                selectable: false,
+                dayClick: function(date, jsEvent, view) {
+                    changeDate(date);
+                },
+                editable: true,
+                eventClick: function(calEvent, jsEvent, view) {
+                    editAppointment(calEvent);
+                },
+                eventDrop: function(event, delta, revertFunc) {
+                    updateAppointment(event);
+                },
+                eventLimit: true
+            });
+
+            $(selectors.agenda).fullCalendar({
+                defaultDate: '2016-09-21',
+                defaultView: 'agendaDay',
+                editable: true,
+                events: function(start, end, timezone, callback) {
+                    callback(events);
+                },
+                eventClick: function(calEvent, jsEvent, view) {
+                    editAppointment(calEvent);
+                },
+                eventDrop: function(event, delta, revertFunc) {
+                    updateAppointment(event);
+                },
+                eventResize: function(event, delta, revertFunc) {
+                    updateAppointment(event);
+                },
+                height: 'parent',
+                select: function(start, end) {
+                    createAppointment(start, end);
+                },
+                selectable: true,
+                selectHelper: false,
+                viewRender: function(view, element) {
+                    updateCalendarSelectedDate(view.start);
+                }
+            });
+        }
 
         var changeDate = function(date) {
             $(selectors.agenda).fullCalendar('gotoDate', date);
@@ -67,63 +138,6 @@
             $(selectors.agenda).fullCalendar('refetchEvents');
         }
 
-        function mainViewModel(_events, _panel) {
-            panel = _panel;
-            events = _events;
-        }
-
-        mainViewModel.prototype.init = function() { 
-            id = events[events.length - 1].id + 1;
-
-            $(selectors.calendar).fullCalendar({
-                defaultDate: '2016-09-21',
-                contentHeight: 'auto',
-                height: 'auto',
-                events: function(start, end, timezone, callback) {
-                    callback(events);    
-                },
-                selectable: false,
-                dayClick: function(date, jsEvent, view) {
-                    changeDate(date);
-                },
-                editable: true,
-                eventClick: function(calEvent, jsEvent, view) {
-                    editAppointment(calEvent);
-                },
-                eventDrop: function(event, delta, revertFunc) {
-                    updateAppointment(event);
-                },
-                eventLimit: true
-            });
-
-            $(selectors.agenda).fullCalendar({
-                defaultDate: '2016-09-21',
-                defaultView: 'agendaDay',
-                editable: true,
-                events: function(start, end, timezone, callback) {
-                    callback(events);
-                },
-                eventClick: function(calEvent, jsEvent, view) {
-                    editAppointment(calEvent);
-                },
-                eventDrop: function(event, delta, revertFunc) {
-                    updateAppointment(event);
-                },
-                eventResize: function(event, delta, revertFunc) {
-                    updateAppointment(event);
-                },
-                height: 'parent',
-                select: function(start, end) {
-                    createAppointment(start, end);
-                },
-                selectable: true,
-                selectHelper: false,
-                viewRender: function(view, element) {
-                    updateCalendarSelectedDate(view.start);
-                }
-            });
-        }
-
-        return mainViewModel;
+        return calendarController;
     })();
 })(window.app || (window.app = {}));

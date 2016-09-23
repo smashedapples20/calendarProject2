@@ -1,8 +1,18 @@
+// ************************** //
+// Copyright Steven Mott 2016 //
+// ************************** //
+
 (function(app) {
     app.panel = (function() {
         var event;
         var selectors = app.selectors;
 
+        /**
+         * Creates an instance of panel
+         * 
+         * @constructor
+         * @this {panel}
+         */
         function panel() {
         }
 
@@ -50,6 +60,11 @@
             }
         }
 
+        /**
+         * Shows the appointment panel with the given event.
+         * 
+         * @param {event} _event The event to show in the appointment panel.
+         */
         panel.prototype.show = function(_event) {
             event = _event;
 
