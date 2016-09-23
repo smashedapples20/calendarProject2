@@ -82,6 +82,7 @@
 
             $(selectors.appointmentPanel).addClass('appointmentPanel-shown');
             $(selectors.overlay).addClass('overlay-shown');
+            $(selectors.appointmentName).focus();
 
             registerEventHandlers();
         }

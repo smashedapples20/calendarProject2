@@ -6,16 +6,16 @@
 <html>
   <head>
     <title>Calendar Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="ext/fullCalendar/fullcalendar.css" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='ext/fullCalendar/fullcalendar.css' />
 
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="ext/fullCalendar/lib/moment.min.js"></script>
-    <script src="ext/fullCalendar/fullcalendar.min.js"></script>
-    <script src="selectors.js"></script>
-    <script src="calendarApp.js"></script>
-    <script src="appointmentPanel.js"></script>
+    <script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+    <script src='ext/fullCalendar/lib/moment.min.js'></script>
+    <script src='ext/fullCalendar/fullcalendar.min.js'></script>
+    <script src='selectors.js'></script>
+    <script src='calendarApp.js'></script>
+    <script src='appointmentPanel.js'></script>
     <script>
         $(document).ready(function() {
             var events = [
@@ -40,29 +40,29 @@
         <div id='calendar'></div>
         <div id='agenda'></div>
     </div>
-    <div class="appointmentPanel">
-        <span><h1>Edit appointment</h1></span>
-        <div class="panelContent">
+    <div class='appointmentPanel'>
+        <span tabindex='-1'><h1>Edit appointment</h1></span>
+        <div class='panelContent'>
             <span>
-                <label for="appointmentName">Name:</label>
-                <input type="text" id="appointmentName">
+                <label for='appointmentName' tabindex='-1'>Name:</label>
+                <input type='text' id='appointmentName' tabindex='0'>
             </span>
             <span>
-                <label for="startTime">Start time:</label>
-                <input type="text" id="startTime" disabled="true">
+                <label for='startTime' tabindex='-1'>Start time:</label>
+                <input type='text' id='startTime' disabled='true' tabindex='-1'>
             </span>
             <span>
-                <label for="endTime">End time:</label>
-                <input type="text" id="endTime" disabled="true">
+                <label for='endTime' tabindex='-1'>End time:</label>
+                <input type='text' id='endTime' disabled='true' tabindex='-1'>
             </span>
             <span>
-                <label for="description">Description:</label>
-                <textarea id="description" rows="4"></textarea>
+                <label for='description' tabindex='-1'>Description:</label>
+                <textarea id='description' rows='4' tabindex='0'></textarea>
             </span>
         </div>
-        <div class="panelButtons">
-            <button id="save">Save</button>
-            <button id="cancel">Cancel</button>
+        <div class='panelButtons'>
+            <button id='save' tabindex='0'>Save</button>
+            <button id='cancel' tabindex='0'>Cancel</button>
         </div>
     </div>
   </body>
