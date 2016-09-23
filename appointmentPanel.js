@@ -33,7 +33,7 @@
 
         var saveAppointment = function() {
             updateEvent();
-            $(selectors.appointmentPanel).trigger("saveEvent", event);
+            $(selectors.appointmentPanel).trigger('saveEvent', event);
             event = null;
             dismiss();
         }
@@ -60,8 +60,8 @@
 
         var updateView = function() {
             $(selectors.appointmentName).val(event.title);
-            $(selectors.startTime).val(event.start.format("LT"));
-            $(selectors.endTime).val(event.end.format("LT"));
+            $(selectors.startTime).val(event.start.format('LT'));
+            $(selectors.endTime).val(event.end.format('LT'));
 
             if (event.description) {
                 $(selectors.description).val(event.description);
