@@ -4,7 +4,7 @@
         var id = 0;
 
         var changeDate = function(date) {
-            $('#agenda').fullCalendar('gotoDate', date);
+            $(selectors.agenda).fullCalendar('gotoDate', date);
         }
 
         var updateCalendarSelectedDate = function(moment) {
@@ -20,11 +20,11 @@
                 end: end
             };
 
-            $('.appointmentPanel').on("saveEvent", function(_event, calEvent) {
+            $(selectors.appointmentPanel).on('saveEvent', function(_event, calEvent) {
                 _event.stopPropagation();
                 events.push(calEvent);
                 updateCalendarViews();
-                $('.appointmentPanel').off();
+                $(selectors.appointmentPanel).off();
             });
 
             panel.show(event);
@@ -33,14 +33,14 @@
         var editAppointment = function (event) {
             var eventToEdit = getEventForEdit(event);
 
-            $('.appointmentPanel').on("saveEvent", function(_event, calEvent) {
+            $(selectors.appointmentPanel).on('saveEvent', function(_event, calEvent) {
                 _event.stopPropagation();
 
                 eventToEdit.title = event.title;
                 eventToEdit.description = event.description;
 
                 updateCalendarViews();
-                $('.appointmentPanel').off();
+                $(selectors.appointmentPanel).off();
             });
 
             panel.show(event);
@@ -63,8 +63,8 @@
         }
 
         var updateCalendarViews = function() {
-            $('#calendar').fullCalendar('refetchEvents');
-            $('#agenda').fullCalendar('refetchEvents');
+            $(selectors.calendar).fullCalendar('refetchEvents');
+            $(selectors.agenda).fullCalendar('refetchEvents');
         }
 
         function mainViewModel(_events, _panel) {
@@ -75,7 +75,7 @@
         mainViewModel.prototype.init = function() { 
             id = events[events.length - 1].id + 1;
 
-            $('#calendar').fullCalendar({
+            $(selectors.calendar).fullCalendar({
                 defaultDate: '2016-09-21',
                 contentHeight: 'auto',
                 height: 'auto',
@@ -96,7 +96,7 @@
                 eventLimit: true
             });
 
-            $('#agenda').fullCalendar({
+            $(selectors.agenda).fullCalendar({
                 defaultDate: '2016-09-21',
                 defaultView: 'agendaDay',
                 editable: true,

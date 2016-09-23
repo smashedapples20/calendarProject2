@@ -5,11 +5,11 @@
 
         selectors.agenda = "#agenda";
         selectors.appointmentName = "#appointmentName";
+        selectors.appointmentPanel = ".appointmentPanel";
         selectors.calendar = "#calendar";
         selectors.cancel = "#cancel";
         selectors.description = "#description";
         selectors.overlay = ".overlay";
-        selectors.panel = ".panel";
         selectors.save = ".save";
         selectors.startTime = "#startTime";
         selectors.endTime = "#endTime";
