@@ -26,24 +26,24 @@
             id = events[events.length - 1].id + 1;
 
             $(selectors.calendar).fullCalendar({
-                defaultDate: '2016-09-21',
                 contentHeight: 'auto',
-                height: 'auto',
-                events: function(start, end, timezone, callback) {
-                    callback(events);    
-                },
-                selectable: false,
                 dayClick: function(date, jsEvent, view) {
                     changeDate(date);
                 },
+                defaultDate: '2016-09-21',
                 editable: true,
+                events: function(start, end, timezone, callback) {
+                    callback(events);    
+                },
                 eventClick: function(calEvent, jsEvent, view) {
                     editAppointment(calEvent);
                 },
                 eventDrop: function(event, delta, revertFunc) {
                     updateAppointment(event);
                 },
-                eventLimit: true
+                eventLimit: true,
+                height: 'auto',
+                selectable: false
             });
 
             $(selectors.agenda).fullCalendar({
