@@ -12,7 +12,7 @@
          * 
          * @constructor
          * @param {event[]} _events The events to initialize the calendars with.
-         * @param {appointmentPanel} _panel The appointmentPanel to use with these calendars.
+         * @param {panel} _panel The appointmentPanel to use with these calendars.
          */
         function calendarController(_events, _panel) {
             panel = _panel;

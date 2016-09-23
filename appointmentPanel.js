@@ -20,10 +20,12 @@
             $(selectors.overlay).click(dismiss);
             $(selectors.cancel).click(dismiss);
             $(selectors.save).click(saveAppointment);
+            $(document).on('keydown.panel', null, null, handleKeys);
         }
 
         var unregisterPanelEventHandlers = function() {
             $(selectors.appointmentPanel).off();
+            $(document).off('keydown.panel');
             $(selectors.overlay).unbind();
             $(selectors.cancel).unbind();
             $(selectors.save).unbind();
@@ -34,6 +36,14 @@
             $(selectors.appointmentPanel).trigger("saveEvent", event);
             event = null;
             dismiss();
+        }
+
+        var handleKeys = function(jsEvent) {
+            if (jsEvent.which === 13) {
+                saveAppointment();
+            } else if(jsEvent.which === 27) {
+                dismiss();
+            }
         }
 
         var dismiss = function() {
