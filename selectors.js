@@ -10,7 +10,7 @@
         selectors.cancel = "#cancel";
         selectors.description = "#description";
         selectors.overlay = ".overlay";
-        selectors.save = ".save";
+        selectors.save = "#save";
         selectors.startTime = "#startTime";
         selectors.endTime = "#endTime";
 

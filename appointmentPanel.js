@@ -7,27 +7,28 @@
         }
 
         var registerEventHandlers = function() {
-            $('.overlay').click(dismiss);
-            $('#cancel').click(dismiss);
-            $('#save').click(saveAppointment);
+            $(selectors.overlay).click(dismiss);
+            $(selectors.cancel).click(dismiss);
+            $(selectors.save).click(saveAppointment);
         }
 
         var unregisterPanelEventHandlers = function() {
-            $('overlay').unbind();
-            $('#cancel').unbind();
-            $('#save').unbind();
+            $(selectors.appointmentPanel).off();
+            $(selectors.overlay).unbind();
+            $(selectors.cancel).unbind();
+            $(selectors.save).unbind();
         }
 
         var saveAppointment = function() {
             updateEvent();
-            $('.appointmentPanel').trigger("saveEvent", event);
+            $(selectors.appointmentPanel).trigger("saveEvent", event);
             event = null;
             dismiss();
         }
 
         var dismiss = function() {
-            $('.appointmentPanel').removeClass('appointmentPanel-shown');
-            $('.overlay').removeClass('overlay-shown');
+            $(selectors.appointmentPanel).removeClass('appointmentPanel-shown');
+            $(selectors.overlay).removeClass('overlay-shown');
 
             unregisterPanelEventHandlers();
         }
@@ -54,8 +55,8 @@
 
             updateView();
 
-            $('.appointmentPanel').addClass('appointmentPanel-shown');
-            $('.overlay').addClass('overlay-shown');
+            $(selectors.appointmentPanel).addClass('appointmentPanel-shown');
+            $(selectors.overlay).addClass('overlay-shown');
 
             registerEventHandlers();
         }

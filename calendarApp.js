@@ -117,7 +117,7 @@
                     createAppointment(start, end);
                 },
                 selectable: true,
-                selectHelper: true,
+                selectHelper: false,
                 viewRender: function(view, element) {
                     updateCalendarSelectedDate(view.start);
                 }
