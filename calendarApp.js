@@ -30,7 +30,6 @@
                 dayClick: function(date, jsEvent, view) {
                     changeDate(date);
                 },
-                defaultDate: '2016-09-21',
                 editable: true,
                 events: function(start, end, timezone, callback) {
                     callback(events);    
@@ -47,7 +46,6 @@
             });
 
             $(selectors.agenda).fullCalendar({
-                defaultDate: '2016-09-21',
                 defaultView: 'agendaDay',
                 editable: true,
                 events: function(start, end, timezone, callback) {
